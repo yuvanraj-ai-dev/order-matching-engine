@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libssl-dev \
         libpq-dev \
         libhiredis-dev \
+        libsqlite3-dev \
         zlib1g-dev \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
