@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0d0f13;
+  color: #e4e7eb;
+  font-family: "Segoe UI", Roboto, -apple-system, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #22262f;
+}
+
+.app-header h1 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-right select {
+  background: #1a1e27;
+  color: #e4e7eb;
+  border: 1px solid #2a2f3a;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-dot.connected {
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+.status-dot.disconnected {
+  background: #f87171;
+}
+.status-label {
+  font-size: 12px;
+  color: #8892a0;
+}
+
+.app-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h3 {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8892a0;
+}
+
+.order-book,
+.trade-tape,
+.price-chart,
+.order-form {
+  background: #14171d;
+  border: 1px solid #22262f;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.book-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.book-header,
+.tape-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #5c6470;
+  padding: 4px 6px;
+}
+
+.book-row,
+.tape-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 6px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.depth-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.15;
+}
+.bid-bar {
+  background: #4ade80;
+}
+.ask-bar {
+  background: #f87171;
+}
+.book-row .price,
+.book-row .qty {
+  position: relative;
+  z-index: 1;
+}
+
+.bid-price {
+  color: #4ade80;
+}
+.ask-price {
+  color: #f87171;
+}
+
+.empty-row {
+  color: #5c6470;
+  font-size: 12px;
+  padding: 8px 6px;
+}
+
+.tape-body {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.order-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #8892a0;
+  margin-bottom: 12px;
+}
+
+.order-form input,
+.order-form select {
+  background: #1a1e27;
+  color: #e4e7eb;
+  border: 1px solid #2a2f3a;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+
+.side-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.side-toggle button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #2a2f3a;
+  background: #1a1e27;
+  color: #8892a0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.side-toggle button.buy.active {
+  background: rgba(74, 222, 128, 0.15);
+  border-color: #4ade80;
+  color: #4ade80;
+}
+.side-toggle button.sell.active {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: #f87171;
+  color: #f87171;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+.submit-btn.buy {
+  background: #4ade80;
+  color: #0d0f13;
+}
+.submit-btn.sell {
+  background: #f87171;
+  color: #0d0f13;
+}
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.result {
+  color: #8892a0;
+  font-size: 12px;
+  margin-top: 10px;
+}

@@ -1,0 +1,36 @@
+{
+  "listeners": [],
+  "app": {
+    "threads_num": 0,
+    "enable_session": false,
+    "log": {
+      "log_path": "",
+      "logfile_base_name": "",
+      "log_size_limit": 100000000
+    }
+  },
+  "db_clients": [
+    {
+      "name": "default",
+      "rdbms": "postgresql",
+      "host": "${DB_HOST}",
+      "port": "${DB_PORT|5432}",
+      "dbname": "${DB_NAME}",
+      "user": "${DB_USER}",
+      "passwd": "${DB_PASSWORD}",
+      "is_fast": false,
+      "connection_number": 4
+    }
+  ],
+  "redis_clients": [
+    {
+      "name": "default",
+      "host": "${REDIS_HOST}",
+      "port": "${REDIS_PORT|6379}",
+      "passwd": "${REDIS_PASSWORD}",
+      "db": 0,
+      "is_fast": false,
+      "number_of_connections": 4
+    }
+  ]
+}
