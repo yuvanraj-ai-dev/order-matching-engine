@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libmariadb-dev-compat \
         libbrotli-dev \
         libc-ares-dev \
+        libyaml-cpp-dev \
         zlib1g-dev \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
