@@ -171,6 +171,38 @@ Vite's dev server proxies `/api` and `/ws` to `localhost:8080` (see `vite.config
 
 ---
 
+## Deployment
+
+Deploying this stack involves three parts: the database (Neon), the backend (Render), and the frontend (Vercel).
+
+### 1. Database (Neon Serverless Postgres)
+**Why Neon?** It provides a managed, auto-scaling PostgreSQL database that doesn't need to run on the same server as your backend.
+- Create a free account and project at [Neon](https://neon.tech/).
+- Copy your Postgres connection string (looks like `postgres://user:password@ep-rest-of-url.neon.tech/neondb`).
+- Open the Neon SQL Editor and paste the contents of `db/schema.sql` to initialize your database tables.
+
+### 2. Backend & Engine (Render)
+**Why Render?** Render natively supports deploying Docker containers from GitHub, and handles setting the `$PORT` environment variable seamlessly.
+- Create a "Web Service" on [Render](https://render.com/).
+- Connect your GitHub repository.
+- For deployment type, choose **Docker**.
+- Set the **Docker Build Context** to `.` (the repository root).
+- Set the **Dockerfile Path** to `backend/Dockerfile`.
+- Add the following **Environment Variables**:
+  - `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`: parse these from your Neon connection string.
+  - *(Optional)* `REDIS_HOST`, etc. if you are using a managed Redis provider like Upstash. Without Redis configured, the backend gracefully runs without the pub/sub fan-out feature.
+- Deploy. Render will expose the backend on a public `onrender.com` URL.
+
+### 3. Frontend (Vercel)
+**Why Vercel?** It's the standard for globally distributed static and React apps, providing zero-config deployments for Vite.
+- Go to [Vercel](https://vercel.com/) and "Add New Project" -> Import your GitHub repository.
+- Under "Project Settings" during import, set the **Root Directory** to `frontend`.
+- Vercel will auto-detect Vite (Build command: `npm run build`, Output directory: `dist`).
+- Add an **Environment Variable** named `VITE_API_URL` and set it to your Render backend URL (e.g., `https://your-app-name.onrender.com`).
+- Deploy.
+
+---
+
 ## API reference
 
 | Method | Path | Description |
