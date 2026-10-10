@@ -19,7 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpq-dev \
         libhiredis-dev \
         libsqlite3-dev \
-        default-libmysqlclient-dev \
+        libmariadb-dev \
+        libmariadb-dev-compat \
         zlib1g-dev \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
